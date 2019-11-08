@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Travelous</title>
+        <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+        <!--meta tags-->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--bootstrap-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <!-- additional stylesheet-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+	<body>
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#"><img height="50px" width="50px" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+			<a class="navbar-brand" href="#">Travelous</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('destinations') }}">Destinations</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('about') }}">About</a>
+						</li>
+						<li>
+							<a class="nav-link" href="{{ url_for('visa') }}">Visa</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							More
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="{{ url_for('blog') }}">Blog</a>
+								<a class="dropdown-item" href="{{ url_for('transport') }}">Transport</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<ul class="navbar-nav">
+					{% if 'username' not in session: %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}">Log In<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Register<span class="sr-only">(current)</span></a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('logout') }}">Log Out<span class="sr-only">(current)</span></a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+
+
+		<div class="bd-example" style="margin:2% 5% 2%;">
+			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+					<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+					<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+					<img src="{{ url_for('static', filename='images/2.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Switzerland</h5>
+							<p>Experience the Alps like never before</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ url_for('static', filename='images/3.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+						<h5>Poland</h5>
+						<p>Get the best of the views at the cheapest rates</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="{{ url_for('static', filename='images/4.jpg') }}" class="d-block w-100" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>India</h5>
+							<p>Get all your bookings made in a single platform!</p>
+						</div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+		{% if 'username' in session: %}
+		<div>
+			<p style="font-family:Calibri; margin:1% 3%; font-size:22px; text-align:right;"><b>WELCOME TO TRAVELOUS, {{session['fname']}} {{session['lname']}}! </b></p>
+		</div>
+		{% endif %}
+		<!-- text bar -->
+		<div style="background-color: #f5f1e1;">
+			<div id="textsearch">
+				<form class="form-inline" autocomplete="off"  method="get" action="../destinations" >
+					<div style="width:30% "></div>
+					<div style="width:40%;  padding: 0px 20px 0px;">
+						<button style="width:100%; background-color: #e3bd56; border-color: #e3bd56;" onclick="window.location.href='destinations'" type="submit" id="search" class="btn btn-primary mb-2">Explore Destinations</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+	<script>
+	var dest = ['Copenhagen', 'Munich', 'Dublin', 'Mahe', 'Munich', 'Dublin', 'Copenhagen', 'Dresden', 'Berlin', 'Paris',
+	 'Amsterdam', 'Tokyo', 'New York', 'Mumbai', 'Rome', 'Vienna', 'Shanghai', 'Lima', 'Zermatt', 'Interlaken'];
+	function autocomplete(inp, arr) {
+	  /*the autocomplete function takes two arguments,
+	  the text field element and an array of possible autocompleted values:*/
+	  var currentFocus;
+	  /*execute a function when someone writes in the text field:*/
+	  inp.addEventListener("input", function(e) {
+		  var a, b, i, val = this.value;
+		  /*close any already open lists of autocompleted values*/
+		  closeAllLists();
+		  if (!val) { return false;}
+		  currentFocus = -1;
+		  /*create a DIV element that will contain the items (values):*/
+		  a = document.createElement("DIV");
+		  a.setAttribute("id", this.id + "autocomplete-list");
+		  a.setAttribute("class", "autocomplete-items");
+		  /*append the DIV element as a child of the autocomplete container:*/
+		  this.parentNode.appendChild(a);
+		  /*for each item in the array...*/
+		  for (i = 0; i < arr.length; i++) {
+			/*check if the item starts with the same letters as the text field value:*/
+			if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+			  /*create a DIV element for each matching element:*/
+			  b = document.createElement("DIV");
+			  /*make the matching letters bold:*/
+			  b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+			  b.innerHTML += arr[i].substr(val.length);
+			  /*insert a input field that will hold the current array item's value:*/
+			  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+			  /*execute a function when someone clicks on the item value (DIV element):*/
+				  b.addEventListener("click", function(e) {
+				  /*insert the value for the autocomplete text field:*/
+				  inp.value = this.getElementsByTagName("input")[0].value;
+				  /*close the list of autocompleted values,
+				  (or any other open lists of autocompleted values:*/
+				  closeAllLists();
+			  });
+			  a.appendChild(b);
+			}
+		  }
+	  });
+	  /*execute a function presses a key on the keyboard:*/
+	  inp.addEventListener("keydown", function(e) {
+		  var x = document.getElementById(this.id + "autocomplete-list");
+		  if (x) x = x.getElementsByTagName("div");
+		  if (e.keyCode == 40) {
+			/*If the arrow DOWN key is pressed,
+			increase the currentFocus variable:*/
+			currentFocus++;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 38) { //up
+			/*If the arrow UP key is pressed,
+			decrease the currentFocus variable:*/
+			currentFocus--;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 13) {
+			/*If the ENTER key is pressed, prevent the form from being submitted,*/
+			e.preventDefault();
+			if (currentFocus > -1) {
+			  /*and simulate a click on the "active" item:*/
+			  if (x) x[currentFocus].click();
+			}
+		  }
+	  });
+	  function addActive(x) {
+		/*a function to classify an item as "active":*/
+		if (!x) return false;
+		/*start by removing the "active" class on all items:*/
+		removeActive(x);
+		if (currentFocus >= x.length) currentFocus = 0;
+		if (currentFocus < 0) currentFocus = (x.length - 1);
+		/*add class "autocomplete-active":*/
+		x[currentFocus].classList.add("autocomplete-active");
+	  }
+	  function removeActive(x) {
+		/*a function to remove the "active" class from all autocomplete items:*/
+		for (var i = 0; i < x.length; i++) {
+		  x[i].classList.remove("autocomplete-active");
+		}
+	  }
+	  function closeAllLists(elmnt) {
+		/*close all autocomplete lists in the document,
+		except the one passed as an argument:*/
+		var x = document.getElementsByClassName("autocomplete-items");
+		for (var i = 0; i < x.length; i++) {
+		  if (elmnt != x[i] && elmnt != inp) {
+		  x[i].parentNode.removeChild(x[i]);
+		}
+	  }
+	}
+	/*execute a function when someone clicks in the document:*/
+	document.addEventListener("click", function (e) {
+		closeAllLists(e.target);
+	});
+	}
+	</script>
+
+	<script>
+		autocomplete(document.getElementById("searchdest"), dest);
+	</script>
+	</body>
+</html>

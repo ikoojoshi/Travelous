@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+		<title>Travelous</title>
+		<link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+		<!--meta tags-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--bootstrap-->
+		<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<!-- additional stylesheet-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	</head>
+	<body style="background-color:#f0e1ad	;">
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#"><img height="50px" width="50px" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+			<a class="navbar-brand" href="#">Travelous</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="{{ url_for('destinations') }}">Destinations</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('about') }}">About</a>
+						</li>
+
+						<li>
+							<a class="nav-link" href="{{ url_for('visa') }}">Visa</a>
+						</li>
+
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							More
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="{{ url_for('blog') }}">Blog</a>
+								<a class="dropdown-item" href="{{ url_for('transport') }}">Transport</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}">Log In<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Register<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+        <!-- text bar -->
+		<div id="textsearch">
+			<form class="form-inline" autocomplete="off" style="text-align:center;margin:auto;">
+				<div style="width:30%" ></div>
+				<div style="width:40%;  padding: 0px 20px 0px;">
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">TN Tour</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="text-align:left; height:250px;">
+		  <br>
+		  <b>
+		  {% for i in range(length):%}
+        &nbsp; {{ preview[i] }}
+		  <br> <br>
+		  {% endfor %}
+		  </b>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+				</div>
+			</form>
+			<br>
+			<br>
+			<form class="form-inline" autocomplete="off">
+				<div style="width:10%"></div>
+				<div class="autocomplete" style="width:50%; padding: 0px 20px 0px;">
+					<input style="width:100%" class="form-control form-control-lg" type="text" id="searchdest" name="dest"
+						   placeholder="{{ dest }}">
+				</div>
+				<div style="width:30%;  padding: 0px 20px 0px;">
+						<button style="width:100%; background-color: #e3bd56; border-color: #e3bd56;" type="button" id="search"
+								class="btn btn-primary mb-2">Search</button>
+				</div>
+			</form>
+
+
+
+
+    <script>
+	var dest = ['Copenhagen', 'Munich', 'Dublin', 'Mahe', 'Munich', 'Dublin', 'Copenhagen', 'Dresden', 'Berlin', 'Paris',
+	 'Amsterdam', 'Tokyo', 'New York', 'Mumbai', 'Rome', 'Vienna', 'Shanghai', 'Lima', 'Zermatt', 'Interlaken'];
+
+	function autocomplete(inp, arr) {
+	  /*the autocomplete function takes two arguments,
+	  the text field element and an array of possible autocompleted values:*/
+	  var currentFocus;
+	  /*execute a function when someone writes in the text field:*/
+	  inp.addEventListener("input", function(e) {
+		  var a, b, i, val = this.value;
+		  /*close any already open lists of autocompleted values*/
+		  closeAllLists();
+		  if (!val) { return false;}
+		  currentFocus = -1;
+		  /*create a DIV element that will contain the items (values):*/
+		  a = document.createElement("DIV");
+		  a.setAttribute("id", this.id + "autocomplete-list");
+		  a.setAttribute("class", "autocomplete-items");
+		  /*append the DIV element as a child of the autocomplete container:*/
+		  this.parentNode.appendChild(a);
+		  /*for each item in the array...*/
+		  for (i = 0; i < arr.length; i++) {
+			/*check if the item starts with the same letters as the text field value:*/
+			if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+			  /*create a DIV element for each matching element:*/
+			  b = document.createElement("DIV");
+			  /*make the matching letters bold:*/
+			  b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+			  b.innerHTML += arr[i].substr(val.length);
+			  /*insert a input field that will hold the current array item's value:*/
+			  b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+			  /*execute a function when someone clicks on the item value (DIV element):*/
+				  b.addEventListener("click", function(e) {
+				  /*insert the value for the autocomplete text field:*/
+				  inp.value = this.getElementsByTagName("input")[0].value;
+				  /*close the list of autocompleted values,
+				  (or any other open lists of autocompleted values:*/
+				  closeAllLists();
+			  });
+			  a.appendChild(b);
+			}
+		  }
+	  });
+	  /*execute a function presses a key on the keyboard:*/
+	  inp.addEventListener("keydown", function(e) {
+		  var x = document.getElementById(this.id + "autocomplete-list");
+		  if (x) x = x.getElementsByTagName("div");
+		  if (e.keyCode == 40) {
+			/*If the arrow DOWN key is pressed,
+			increase the currentFocus variable:*/
+			currentFocus++;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 38) { //up
+			/*If the arrow UP key is pressed,
+			decrease the currentFocus variable:*/
+			currentFocus--;
+			/*and and make the current item more visible:*/
+			addActive(x);
+		  } else if (e.keyCode == 13) {
+			/*If the ENTER key is pressed, prevent the form from being submitted,*/
+			e.preventDefault();
+			if (currentFocus > -1) {
+			  /*and simulate a click on the "active" item:*/
+			  if (x) x[currentFocus].click();
+			}
+		  }
+	  });
+	  function addActive(x) {
+		/*a function to classify an item as "active":*/
+		if (!x) return false;
+		/*start by removing the "active" class on all items:*/
+		removeActive(x);
+		if (currentFocus >= x.length) currentFocus = 0;
+		if (currentFocus < 0) currentFocus = (x.length - 1);
+		/*add class "autocomplete-active":*/
+		x[currentFocus].classList.add("autocomplete-active");
+	  }
+	  function removeActive(x) {
+		/*a function to remove the "active" class from all autocomplete items:*/
+		for (var i = 0; i < x.length; i++) {
+		  x[i].classList.remove("autocomplete-active");
+		}
+	  }
+	  function closeAllLists(elmnt) {
+		/*close all autocomplete lists in the document,
+		except the one passed as an argument:*/
+		var x = document.getElementsByClassName("autocomplete-items");
+		for (var i = 0; i < x.length; i++) {
+		  if (elmnt != x[i] && elmnt != inp) {
+		  x[i].parentNode.removeChild(x[i]);
+		}
+	  }
+	}
+	/*execute a function when someone clicks in the document:*/
+	document.addEventListener("click", function (e) {
+		closeAllLists(e.target);
+	});
+	}
+	</script>
+
+	<script>
+		autocomplete(document.getElementById("searchdest"), dest);
+	</script>
+
+
+		</div>
+		<br>
+		<br>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+		$("#search").click(function(){
+		var inputtext = $('#searchdest').val();
+			$.ajax({
+			  url: "../../search",
+			  type: "get",
+			  data: {input: inputtext},
+			  success: function(response) {
+				$("#destsearch").html(response);
+			  },
+			  error: function(xhr) {
+				//Do Something to handle error
+			  }
+			});
+		});
+		</script>
+
+		<div class="container" id="destsearch">
+		{% if dest=='none' %}
+			<p>Sorry, we could not find {{ dest }} in our list of Destinations.</p>
+		{% else %}
+			<!-- session -->
+			{% for i in range(length)%}
+				<a href="{{ session['website'][i] }}" class="destlink">
+					<div class="dest card mb-3" style="max-width:80%;">
+					  <div class="row no-gutters">
+						<div class="destimg col-md-5">
+						  <img src="{{ url_for('static', filename=session['images'][i]) }}"
+							   class="card-img" alt="...">
+						</div>
+						<div class="col-md-7">
+						  <div class="card-body">
+							<h5 class="card-title"> {{ session['city'][i] }}, {{ session['country'][i] }}</h5>
+							<p class="card-text"> {{ session['description'][i] }}</p>
+							<p class="card-text"><small class="text-muted">Viewed by {{ session['views'][i] }}
+								people</small></p>
+
+							  <form class="form-inline" autocomplete="off">
+								<div style="width:20%"></div>
+								<div style="width:60%;  padding: 0px 20px 0px;">
+										<button style="width:100%; background-color: #e3bd56; border-color: #e3bd56;" type="button" id="search"
+												class="btn btn-primary mb-2">Add to Tour</button>
+								</div>
+							</form>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</a>
+			{% endfor %}
+
+			{% endif %}
+
+			<!--
+			<a href="https://en.wikipedia.org/wiki/Dublin" class="destlink">
+				<div class="dest card mb-3" style="max-width:80%;">
+				  <div class="row no-gutters">
+					<div class="destimg col-md-5">
+					  <img src="{{ url_for('static', filename='images/destinations/dublin.jpg') }}"
+					  class="card-img" alt="...">
+					</div>
+					<div class="col-md-7">
+					  <div class="card-body">
+						<h5 class="card-title">Dublin, Ireland</h5>
+						<p class="card-text">Ireland is an island in the North Atlantic. It is separated from Great
+						Britain to its east by the North Channel, the Irish Sea, and St George's Channel. Ireland is the
+						second-largest island of the British Isles, the third-largest in Europe, and the twentieth
+						largest on Earth.</p>
+						<p class="card-text"><small class="text-muted">Viewed by 110 people</small></p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</a>
+
+
+
+			<a href="https://en.wikipedia.org/wiki/Copenhagen" class="destlink">
+				<div class="dest card mb-3" style="max-width:80%;">
+				  <div class="row no-gutters">
+					<div class="destimg col-md-5">
+					  <img src="{{ url_for('static', filename='images/destinations/copenhagen.jpg') }}"
+					   class="card-img" alt="...">
+					</div>
+					<div class="col-md-7">
+					  <div class="card-body">
+						<h5 class="card-title">Copenhagen, Denmark</h5>
+						<p class="card-text">Copenhagen sits on the coastal islands of Zealand and Amager.
+						Indre By, the citys historic center, contains Frederiksstaden, home to the royal familys
+						Amalienborg Palace. The Christiansborg Palace and the Renaissance-era Rosenborg Castle are
+						surrounded by gardens and home to the crown jewels.<p>
+						<p class="card-text"><small class="text-muted">Viewed by 87 people.</small></p>
+					  </div>
+					</div>
+				  </div>
+				</div>
+			</a>
+-->
+		</div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+	</script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+	</script>
+
+	</body>
+</html>

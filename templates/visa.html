@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+		<title>Travelous</title>
+		<link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+		<!--meta tags-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--bootstrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<!-- additional stylesheet-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#"><img height="50px" width="50px" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+			<a class="navbar-brand" href="#">Travelous</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('destinations') }}">Destinations</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('about') }}">About</a>
+						</li>
+
+						<li>
+							<a class="nav-link" href="{{ url_for('visa') }}">Visa</a>
+						</li>
+
+						<li class="nav-item active dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							More
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="{{ url_for('blog') }}">Blog</a>
+								<a class="dropdown-item" href="{{ url_for('transport') }}">Transport</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('login') }}">Log In<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Register<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+    <br>
+		<br>
+		<!-- text bar
+		<div id="textsearch">
+			<form class="form-inline">
+				<div style="width:10%"></div>
+				<div style="width:50%; padding: 0px 20px 0px;">
+					<input style="width:100%" class="form-control form-control-lg" type="text" placeholder="Enter country .. ">
+				</div>
+				<div style="width:30%;  padding: 0px 20px 0px;">
+					<button style="width:100%; background-color: #e3bd56; border-color: #e3bd56;" type="submit" class="btn btn-primary mb-2">Search</button>
+				</div>
+			</form>
+		</div>
+
+		<br> -->
+		<br>
+
+		<a href="https://www.ustraveldocs.com/in/in-niv-typeb1b2.asp" class="destlink">
+			<div class="dest card mb-3" style="max-width:80%;">
+			  <div class="row no-gutters">
+				<div class="visacard">
+				  <div class="card-body">
+					<h5 class="card-title">United States</h5>
+					<p class="card-text">The B-1/B-2 visitor visa is for people traveling to the United States temporarily for business (B-1) or for pleasure or medical treatment (B-2). Generally, the B-1 visa is for travelers consulting with business associates, attending scientific, educational, professional or business conventions/conferences, settling an estate or negotiating contracts. The B-2 visa is for travel that is recreational in nature, including tourism, visits with friends or relatives, medical treatment and activities of a fraternal, social or service nature. Often, the B-1 and B-2 visas are combined and issued as one visa: the B-1/B-2.</p>
+					<p class="card-text"><small class="text-muted">Click on the card for furthur details.</small></p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</a>
+
+		<a href="https://www.schengenvisainfo.com/tourist-schengen-visa/" class="destlink">
+			<div class="dest card mb-3" style="max-width:80%;">
+			  <div class="row no-gutters">
+				<div class="visacard">
+				  <div class="card-body">
+					<h5 class="card-title">Europe - Schengen Visa</h5>
+					<p class="card-text">A Tourist Schengen Visa permits third-country nationals enter into the Schengen Area for a maximum of 90 days within a 6-month period, under the purpose of traveling or visiting Europe for pleasure.</p>
+					<p class="card-text">Non-European citizens willing to travel to Europe for tourism purpose might be required to apply for a short-term Schengen visa under “tourist” specification.</p>
+					<p class="card-text"><small class="text-muted">Click on the card for furthur details.</small></p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</a>
+
+		<a href="http://www.dubaivisa.net/online/duration30days.html" class="destlink">
+			<div class="dest card mb-3" style="max-width:80%;">
+			  <div class="row no-gutters">
+				<div class="visacard">
+				  <div class="card-body">
+					<h5 class="card-title">Dubai</h5>
+					<p class="card-text">The type of visa needed to enter Dubai depends on several factors such as your nationality, the purpose of your planned visit and its duration. Depending on which country you belong to, you can obtain visa for 30 days or 90 days on arrival in Dubai.</p>
+					<p>The tourist visa is valid for 58 days from the date of issue and is extendable twice for 30 days each, Extension fee is AED 850 each time , valid for 30 days stay.</p>
+					<p class="card-text"><small class="text-muted">Click on the card for furthur details.</small></p>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		</a>
+
+
+
+
+	</body>
+</html>

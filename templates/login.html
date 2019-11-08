@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+		<title>Travelous</title>
+		<link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+		<!--meta tags-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!--bootstrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<!-- additional stylesheet-->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+	</head>
+	<body>
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#"><img height="50px" width="50px" src="{{ url_for('static', filename='images/logo.png') }}"></a>
+			<a class="navbar-brand" href="#">Travelous</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('destinations') }}">Destinations</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url_for('about') }}">About</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							More
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" href="{{ url_for('visa') }}">Visa</a>
+								<a class="dropdown-item" href="{{ url_for('blog') }}">Blog</a>
+								<a class="dropdown-item" href="{{ url_for('transport') }}">Transport</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ url_for('login') }}">Log In<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('register') }}">Register<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+        <div class="container">
+			<form action="" method="post">
+				<fieldset class="scheduler-border">
+					<legend class="scheduler-border">Sign In</legend>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Username</label>
+						<input type="text" class="form-control" name="username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+					<br>
+					<table width="100%">
+						<tr>
+							<td><button type="Submit" name="submit" value="Submit2" style="width:150px; background-color: #e3bd56; border-color: #e3bd56;" class="btn btn-primary">Sign In</button></td>
+							<p style="color:red; opacity:80%;">{{msg}}</p>
+							<td style="text-align:right;">
+							<small class="form-text text-muted">Don't have an account yet?</small>
+							<small class="form-text text-muted"><a href="{{ url_for('register') }}">Register here.</a></small>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>
