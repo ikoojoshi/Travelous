@@ -1,2 +1,2 @@
 # Travelous
-Travelous is built to recommend you places to go based on a collaborative filtering based recommendation system.
+A website built to recommend places for travel based on a collaborative filtering based recommendation system.
